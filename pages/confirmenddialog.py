@@ -9,13 +9,12 @@ class ConfirmEndProcessDialog(Base, Form):
     def __init__(self, process):
         super().__init__()
         self.process = process
-        print(dir(self.process))
-        print(self.process.pid)
         self.setupUi(self)
-        self.resize(300, 200)
+        self.resize(100, 100)
         self.bold_warning_message.setText(f"Are you sure you want to end the selected process: \"{self.process.name()}\" (PID: {self.process.pid})?")
 
         self.warning_message.setText("Ending a process may destroy data, break the session or introduce a security risk. Only unreponsive processes should be ended.")
+
         self.pixmap = QPixmap("./icons/warning.png")
         self.warning_icon.setPixmap(self.pixmap.scaled(75, 75, Qt.IgnoreAspectRatio, Qt.SmoothTransformation))
         self.connect_btns()
@@ -28,11 +27,9 @@ class ConfirmEndProcessDialog(Base, Form):
         self.end_process.clicked.connect(self.handle_end_process)
 
     def handle_end_process(self):
-        print("ending process")
-
+        self.process.kill()
+        self.close()
 
     def handle_cancel(self):
         print("cancelled")
         self.close()
-
-        

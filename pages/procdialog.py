@@ -1,3 +1,7 @@
+"""
+    Dialog displaying more information for a process
+"""
+
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from PySide6.QtCore import *
@@ -24,10 +28,8 @@ class ProcDialog(Base, Form):
         self.proc_dialog_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.proc_dialog_table.horizontalHeader().hide()
         self.proc_dialog_table.setColumnCount(2)
-        #self.proc_dialog_table.insertRow(1)
         item = QTableWidgetItem("My name is jeff")
         self.proc_dialog_table.setItem(0, 1, item)
-        #print(self.selected_process.name())
 
 
     def close_me(self):

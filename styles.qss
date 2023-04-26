@@ -1,0 +1,23 @@
+/* header */
+.view_btn {
+    padding: 40px;
+}
+
+/* process view */
+.proc_view_btn {
+    padding: 6px 20px;
+}
+
+
+/* confirm end process dialog */
+.confirm_end_bold_warning_dialog{
+        font-size: 18px;
+        font-weight: bold;
+}
+
+.confirm_end_confirm_btn{
+    background: red;
+    color: white;
+}
+
+

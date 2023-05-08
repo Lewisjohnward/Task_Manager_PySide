@@ -4,6 +4,15 @@
 }
 
 /* process view */
+QHeaderView {
+    /* font: 15px; */
+    /* background: red; */
+    font-weight: bold;
+    background-color: white;
+}
+
+
+
 .proc_view_btn {
     padding: 6px 20px;
 }
@@ -20,4 +29,21 @@
     color: white;
 }
 
+/* procdialog */
+.procdialog_proc_title{
+    font-size: 20px;
+    font-weight: bold;
+}
 
+.procdialog_close_btn{
+    font-size: 15px;
+    font-weight: bold;
+    border: 0;
+    padding: 10px;
+}
+
+.procdialog_close_btn:hover{
+    border: 1px solid white;
+    background: white;
+    border-radius: 15px;
+}

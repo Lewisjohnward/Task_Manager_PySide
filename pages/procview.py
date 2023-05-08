@@ -89,7 +89,9 @@ class ProcView(Base, Form):
         
         self.data = processes()
         self.model = TableModel(self.data)
-        self.proctable.setModel(self.model)
+        self.proxy = QSortFilterProxyModel()
+        self.proxy.setSourceModel(self.model)
+        self.proctable.setModel(self.proxy)
         self.proctable.clicked.connect(self.handle_click)
         self.proctable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
@@ -100,22 +102,14 @@ class ProcView(Base, Form):
         self.show_proc_properties_btn.setIcon(QIcon("./icons/info.png"))
         self.show_proc_properties_btn.clicked.connect(self.display_proc_details)
 
-    #    self.start_timer()
+        self.start_timer()
 
-    #def start_timer(self):
-    #    self.timer = QTimer.singleShot(1000, self.refresh_data)
+    def start_timer(self):
+        self.timer = QTimer.singleShot(1000, self.refresh_data)
 
-    #def refresh_data(self):
-    #    self.emit(SIGNAL("layoutAboutToBeChanged()"))
-    #    print(self.proctable.selectionModel().currentIndex())
-    #    self.data = processes()
-    #    self.model = TableModel(self.data)
-    #    self.proctable.setModel(self.model)
-    #    print(len(self.data))
-    #    print("refresh")
-    #    self.emit(SIGNAL("dataChanged()"))
-    #    self.emit(SIGNAL("layoutChanged()"))
-    #    self.start_timer()
+    def refresh_data(self):
+        print("new data incoming")
+        self.start_timer()
 
 
     def handle_click(self, item):
@@ -129,4 +123,4 @@ class ProcView(Base, Form):
         #self.selected_process.kill()
 
     def display_proc_details(self):
-        self.dialog = ProcDialog(self.selected_process)
+        self.dialog = ProcDialog(self.selected_process.pid)

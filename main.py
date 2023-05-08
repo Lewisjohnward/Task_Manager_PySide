@@ -7,7 +7,6 @@ import sys
 import os
 current_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(current_dir, "./pages"))
-
 #uiclass, baseclass = pg.Qt.loadUiType("./designer/resource_view.ui")
 #
 #class MainWindow(uiclass, baseclass):
@@ -21,12 +20,20 @@ sys.path.insert(0, os.path.join(current_dir, "./pages"))
 #        self.cpuHistoryGraph.plot(hour, temperature)
 
 from procview import ProcView
+from resview import ResView
+from fsview import FsView
 Form, Base = loadUiType("./ui/main.ui")
 
 #class ResView(QWidget, Ui_ResView):
 #    def __init__(self):
 #        super().__init__()
 #        self.setupUi(self)
+
+#### for disk view #####
+#import psutil
+#def disk_details():
+#    print(psutil.disk_partitions())
+
 
 
 class MainWindow(Base, Form):
@@ -48,7 +55,6 @@ class MainWindow(Base, Form):
         self.view_proc.clicked.connect(self.proc_view)
         self.view_res.clicked.connect(self.res_view)
         self.view_fs.clicked.connect(self.fs_view)
-        self.view_fs.setDisabled(True)
 
     def delete_current_view(self):
         current_view = self.findChild(QWidget, "Form")
@@ -63,7 +69,8 @@ class MainWindow(Base, Form):
         self.layout.addWidget(self.resview)
 
     def fs_view(self):
-        print("fs view")
+        self.fsview = FsView()
+        self.layout.addWidget(self.fsview)
 
 
 def main():

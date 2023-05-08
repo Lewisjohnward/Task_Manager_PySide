@@ -6,3 +6,4 @@ A simple task manager build using PySide
 - [ ] Bug when sorting doesn't maintain selection
 - [ ] Refresh data in table
 - [ ] Reload data for single process procDialog
+- [x] Implement file system view
